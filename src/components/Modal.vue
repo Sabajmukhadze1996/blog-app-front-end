@@ -14,6 +14,7 @@ const props = defineProps({
   message: String,
 });
 
+const emit = defineEmits(["close"]);
 const isVisible = ref(true);
 
 const closeModal = () => {

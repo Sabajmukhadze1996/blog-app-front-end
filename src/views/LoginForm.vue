@@ -9,23 +9,29 @@
     />
     <input
       v-model="formData.password"
-      type="password..."
+      type="password"
       placeholder="Password"
       required
       class="input-field"
     />
     <button type="submit" class="submit-button">Login Into Your Account</button>
   </form>
+
+  <Modal v-if="showModal" :message="modalMessage" @close="closeModal" />
 </template>
 
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
+import Modal from "../components/Modal.vue";
 
 const formData = ref({
   username: "",
   password: "",
 });
+
+const showModal = ref(false);
+const modalMessage = ref("");
 
 const handleLogin = async () => {
   try {
@@ -34,10 +40,21 @@ const handleLogin = async () => {
       password: formData.value.password,
     });
     localStorage.setItem("token", response.data.token);
-    alert("Login successful!");
+    modalMessage.value = "Login successful!";
+    showModal.value = true;
+
+    setTimeout(() => {
+      window.location.href = "/profile";
+    }, 1000);
   } catch (error) {
-    alert("Login failed: " + error.response.data.message);
+    modalMessage.value =
+      "Login failed: " + (error.response?.data?.message || "Unknown error.");
+    showModal.value = true;
   }
+};
+
+const closeModal = () => {
+  showModal.value = false;
 };
 </script>
 
