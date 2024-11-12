@@ -9,7 +9,7 @@
     />
     <input
       v-model="formData.password"
-      type="password"
+      type="password..."
       placeholder="Password"
       required
       class="input-field"

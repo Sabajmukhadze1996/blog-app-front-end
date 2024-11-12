@@ -186,7 +186,8 @@ const closeModal = () => {
   padding-left: 20px;
   margin-bottom: 30px !important;
   transition: border-color 0.3s ease;
-  background-color: #333;
+  background-color: transparent !important;
+
   color: #fff;
   padding-block: 20px !important;
   font-size: 16px;
@@ -194,6 +195,7 @@ const closeModal = () => {
 
 .input-field::placeholder {
   font-style: italic;
+  color: #fff !important;
 }
 
 .input-field.input-error {
